@@ -179,7 +179,7 @@ def run_model():
     # define a function for the nueral transfer
 
     def run_style_transfer(cnn, normalization_mean, normalization_std,
-                           content_img, style_img, input_img, num_steps=50,
+                           content_img, style_img, input_img, num_steps=300,
                            style_weight=1000000, content_weight=10):
         """Run the style transfer."""
         print('Building the style transfer model..')

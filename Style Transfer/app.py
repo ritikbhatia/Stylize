@@ -13,23 +13,23 @@ from flask import Flask, render_template, request, redirect, url_for
 from model import run_model
 
 ############### Uploading and Rendering #######################
-app = Flask(__name__, static_folder='')
+app = Flask(__name__, static_folder='/', static_url_path='/')
 
 
 @app.route('/')
 def upload_file():
     return render_template('upload.html')
 
-# url to redirect back to home
+# url to redirect back to home !!
 # @app.route('/home')
 # def redirect_home():
 #     return redirect(url_for('/'))
 
 
 # style, content and output overwritten after every model call
-# Add upload again button in display_images.html
+# Add upload again button in display_images.html!!
 # Account for different image types (png)
-# Change epochs back to 300
+# Change epochs back to 300(more?)
 @app.route('/uploader', methods=['GET', 'POST'])
 def upload():
     if request.method == 'POST':
@@ -41,6 +41,14 @@ def upload():
         style.save(style_img_name)
         run_model()
         return render_template('display_images.html', content_image=content_img_name, style_image=style_img_name, output_image="output.jpg")
+
+# JavaScript and CSS not rendering from static folder
+# JS and CSS written in script and style tag for now
+# That seems to be working
+# HOW DO I GET LINK THE FREAKING STATIC FILE?!
+@app.route('/edit', methods=['GET', 'POST'])
+def editor():
+    return render_template('image_editing.html')
 
 
 if __name__ == '__main__':
