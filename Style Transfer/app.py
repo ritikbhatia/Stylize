@@ -10,7 +10,8 @@ import torch.nn.functional as F
 import torch.nn as nn
 import torch
 from flask import Flask, render_template, request, redirect, url_for
-from model import run_model
+from artify import run_model
+from detect import run_detect
 
 ############### Uploading and Rendering #######################
 app = Flask(__name__, static_folder='')
@@ -40,6 +41,7 @@ def upload():
         content.save(content_img_name)
         style.save(style_img_name)
         run_model()
+        run_detect(content_img_name)
         return render_template('display_images.html', content_image=content_img_name, style_image=style_img_name, output_image="output.jpg")
 
 
