@@ -48,6 +48,8 @@ def upload():
 # JS and CSS written in script and style tag for now
 # That seems to be working
 # HOW DO I GET LINK THE FREAKING STATIC FILE?!
+
+
 @app.route('/edit', methods=['GET', 'POST'])
 def editor():
     return render_template('image_editing.html')

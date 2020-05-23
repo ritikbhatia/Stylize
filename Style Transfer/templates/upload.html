@@ -1,9 +1,74 @@
 <html>
+  <head>
+    <meta charset="UTF-8" />
+    <!-- <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='image_editing.css') }}"
+    /> -->
+    <style>
+      canvas {
+        margin: auto;
+        background: #ececec;
+        width: 100%;
+      }
+
+      .btn-disabled {
+        color: #fff !important;
+      }
+      .form-disp {
+        margin: 50px 0px;
+        padding: 0px;
+        text-align: center;
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/camanjs/4.1.2/caman.full.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Upload</title>
+  </head>
   <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">Stylize</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#"
+              >Home <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Artify</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Edit</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Caption</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
     <form
       action="http://localhost:5000/uploader"
       method="POST"
       enctype="multipart/form-data"
+      class="form-disp"
     >
       <label>Content Image: </label>
       <input type="file" name="content" /><br /><br />
