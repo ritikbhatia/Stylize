@@ -18,20 +18,20 @@ app = Flask(__name__, static_folder='/', static_url_path='/')
 
 
 @app.route('/')
+def home():
+    return render_template('home.html')
+
+
+@app.route('/artify')
 def upload_file():
     return render_template('upload.html')
-
-# url to redirect back to home !!
-# @app.route('/home')
-# def redirect_home():
-#     return redirect(url_for('/'))
 
 
 # style, content and output overwritten after every model call
 # Add upload again button in display_images.html!!
 # Account for different image types (png)
 # Change epochs back to 300(more?)
-@app.route('/uploader', methods=['GET', 'POST'])
+@app.route('/artify_perform', methods=['GET', 'POST'])
 def upload():
     if request.method == 'POST':
         content = request.files['content']
@@ -41,7 +41,7 @@ def upload():
         content.save(content_img_name)
         style.save(style_img_name)
         run_model()
-        run_detect(content_img_name)
+        # run_detect(content_img_name)
         return render_template('display_images.html', content_image=content_img_name, style_image=style_img_name, output_image="output.jpg")
 
 # JavaScript and CSS not rendering from static folder
