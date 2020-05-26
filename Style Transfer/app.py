@@ -14,12 +14,13 @@ from artify import run_model
 from detect import run_detect
 
 ############### Uploading and Rendering #######################
-app = Flask(__name__, static_folder='/', static_url_path='/')
+app = Flask(__name__)
+# static_folder='', static_url_path=''
 
 
 @app.route('/')
 def home():
-    return render_template('home.html')
+    return render_template('main.html')
 
 
 @app.route('/artify')
@@ -53,6 +54,10 @@ def upload():
 @app.route('/edit', methods=['GET', 'POST'])
 def editor():
     return render_template('image_editing.html')
+
+@app.route('/detect',methods=['GET','POST'])
+def detector():
+    return render_template('detect.html')
 
 
 if __name__ == '__main__':

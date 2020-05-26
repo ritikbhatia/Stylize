@@ -32,24 +32,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Image Upload</title>
   </head>
-  <body>
-    <div id="nav-placeholder"></div>
+  <body
+    style="
+      background-image: url('static/abstract.jpg');
+      background-size: cover;
+    "
+  >
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="http://127.0.0.1:5000/">Stylize</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="http://127.0.0.1:5000/"
+              >Home <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="http://127.0.0.1:5000/artify">Artify</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="http://127.0.0.1:5000/edit">Edit</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="http://127.0.0.1:5000/detect">Detect</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
     <form
       action="http://localhost:5000/artify_perform"
       method="POST"
       enctype="multipart/form-data"
       class="form-disp"
+      style="background-color: aliceblue;"
     >
-      <label>Content Image: </label>
-      <input type="file" name="content" /><br /><br />
-      <label>Style Image: </label>
-      <input type="file" name="style" /><br /><br />
-      <input type="submit" />
+      <div class="form-group">
+        <label for="content">Content Image: </label>
+        <input type="file" name="content" id="content" />
+        <small class="form-text text-muted"
+          >Enter the image you want to artify</small
+        >
+      </div>
+      <div class="form-group">
+        <label for="style">Style Image: </label>
+        <input type="file" name="style" id="style" />
+        <small class="form-text text-muted"
+          >Enter the image who's style you want to copy</small
+        >
+      </div>
+      <!-- <input type="submit" /> -->
+      <div class="form-group">
+        <button type="submit" class="btn btn-secondary mb-2">Submit</button>
+        <small class="form-text text-muted"
+          >Note- Running the model may take some time.</small
+        >
+      </div>
     </form>
-    <script>
-      $(function () {
-        $("#nav-placeholder").load("/templates/nav.html");
-      });
-    </script>
   </body>
 </html>
