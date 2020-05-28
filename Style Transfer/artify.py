@@ -35,8 +35,8 @@ def run_model():
         image = loader(image).unsqueeze(0)
         return image.to(device, torch.float)
 
-    style_img = image_loader("style_img.jpg")
-    content_img = image_loader("content_img.jpg")
+    style_img = image_loader("static/style_img.jpg")
+    content_img = image_loader("static/content_img.jpg")
 
     assert style_img.size() == content_img.size(
     ), "we need to import style and content images of the same size"
@@ -180,7 +180,7 @@ def run_model():
     # define a function for the nueral transfer
 
     def run_style_transfer(cnn, normalization_mean, normalization_std,
-                           content_img, style_img, input_img, num_steps=50,
+                           content_img, style_img, input_img, num_steps=300,
                            style_weight=1000000, content_weight=10):
         """Run the style transfer."""
         print('Building the style transfer model..')
@@ -237,7 +237,7 @@ def run_model():
         image = image.squeeze(0)      # remove the fake batch dimension
         # unloader = transforms.ToPILImage()
         # image = unloader(image)
-        save_image(image, 'output.jpg')
+        save_image(image, 'static/output.jpg')
 
     # This one works!
     # save_image(output, 'output.jpg')

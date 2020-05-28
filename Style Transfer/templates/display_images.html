@@ -44,19 +44,38 @@
         </ul>
       </div>
     </nav>
+
+    <br />
+
     <div
       class="container"
       style="padding-top: 10%; background-color: antiquewhite;"
     >
       <h2>Artified Image</h2>
+      <img
+        src="{{ url_for('static',filename='output.jpg') }} "
+        height="500px"
+        width="500px"
+        alt="Img not found!"
+      />
       <br />
-      <img src="{{ output_image }}" alt="Img not found!" />
+
       <h3>Content Image</h3>
+      <img
+        src="{{ url_for('static',filename='content_img.jpg') }}"
+        height="500px"
+        width="500px"
+        alt="Img not found!"
+      />
       <br />
-      <img src="{{ content_image }}" alt="Img not found!" />
+
       <h3>Style Image</h3>
-      <br />
-      <img src="{{ style_image }}" alt="Img not found!" />
+      <img
+        src="{{ url_for('static',filename='style_img.jpg') }}"
+        height="500px"
+        width="500px"
+        alt="Img not found!"
+      />
     </div>
   </body>
 </html>

@@ -78,6 +78,7 @@
       class="form-disp"
       style="background-color: aliceblue;"
     >
+      <br />
       <div class="form-group">
         <label for="content">Content Image: </label>
         <input type="file" name="content" id="content" />
@@ -94,11 +95,33 @@
       </div>
       <!-- <input type="submit" /> -->
       <div class="form-group">
-        <button type="submit" class="btn btn-secondary mb-2">Submit</button>
+        <button type="submit" class="btn btn-secondary mb-2" onclick="end()">
+          Submit
+        </button>
         <small class="form-text text-muted"
           >Note- Running the model may take some time.</small
         >
       </div>
+
+      <div id="loading">
+        <img
+          id="loading-image"
+          src="https://i.gifer.com/4V0b.gif"
+          alt="Loading..."
+        />
+        <h6>Please wait while we style your image!</h6>
+      </div>
     </form>
+
+    <script>
+      window.onload = function () {
+        document.getElementById("loading").style.display = "none";
+      };
+
+      function end() {
+        document.getElementById("loading").style.display = "inline-block";
+        document.getElementById("loading").style.float = "center";
+      }
+    </script>
   </body>
 </html>

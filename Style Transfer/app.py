@@ -1,20 +1,13 @@
 from __future__ import print_function
 import os
-import copy
-import torchvision.models as models
-import torchvision.transforms as transforms
-import matplotlib.pyplot as plt
-from PIL import Image
-import torch.optim as optim
-import torch.nn.functional as F
-import torch.nn as nn
-import torch
 from flask import Flask, render_template, request, redirect, url_for
 from artify import run_model
 from detect import run_detect
 
 ############### Uploading and Rendering #######################
 app = Flask(__name__)
+UPLOAD_FOLDER = 'static'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 # static_folder='', static_url_path=''
 
 
@@ -39,8 +32,9 @@ def upload():
         style = request.files['style']
         content_img_name = 'content_img.jpg'
         style_img_name = 'style_img.jpg'
-        content.save(content_img_name)
-        style.save(style_img_name)
+        content.save(os.path.join(
+            app.config['UPLOAD_FOLDER'], content_img_name))
+        style.save(os.path.join(app.config['UPLOAD_FOLDER'], style_img_name))
         run_model()
         # run_detect(content_img_name)
         return render_template('display_images.html', content_image=content_img_name, style_image=style_img_name, output_image="output.jpg")
@@ -51,11 +45,22 @@ def upload():
 # HOW DO I GET LINK THE FREAKING STATIC FILE?!
 
 
+@app.route('/detect_perform', methods=['GET', 'POST'])
+def detection():
+    if request.method == 'POST':
+        image = request.files['detect_image']
+        image_name = 'detection_image.jpg'
+        image.save(os.path.join(app.config['UPLOAD_FOLDER'], image_name))
+        run_detect(image_name)
+    return redirect(url_for('detector'))
+
+
 @app.route('/edit', methods=['GET', 'POST'])
 def editor():
     return render_template('image_editing.html')
 
-@app.route('/detect',methods=['GET','POST'])
+
+@app.route('/detect', methods=['GET', 'POST'])
 def detector():
     return render_template('detect.html')
 
